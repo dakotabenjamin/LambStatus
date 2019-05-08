@@ -2,10 +2,11 @@ import { componentStatuses } from 'utils/const'
 import { ValidationError } from 'utils/errors'
 
 export class Component {
-  constructor ({componentID, name, description = '', status, order = Math.floor(new Date().getTime() / 1000)}) {
+  constructor ({componentID, name, description = '', url = '', status, order = Math.floor(new Date().getTime() / 1000)}) {
     this.componentID = componentID
     this.name = name
     this.description = description
+    this.url = url
     this.status = status
     this.order = order
   }
@@ -26,6 +27,10 @@ export class Component {
       throw new ValidationError('invalid description parameter')
     }
 
+    if (this.url === undefined) {
+      throw new ValidationError('invalid url parameter')
+    }
+
     if (componentStatuses.indexOf(this.status) < 0) {
       throw new ValidationError('invalid status parameter')
     }
@@ -40,7 +45,7 @@ export class Component {
   }
 
   objectify () {
-    const { componentID, name, description, status, order } = this
-    return { componentID, name, description, status, order }
+    const { componentID, name, description, url, status, order } = this
+    return { componentID, name, description, url, status, order }
   }
 }

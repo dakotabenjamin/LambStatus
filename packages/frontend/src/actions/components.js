@@ -47,10 +47,10 @@ export const fetchComponents = (callbacks = {}) => {
   }
 }
 
-export const postComponent = ({name, description, status}, callbacks = {}) => {
+export const postComponent = ({name, description, url, status}, callbacks = {}) => {
   return async dispatch => {
     try {
-      const body = { name, description, status }
+      const body = { name, description, url, status }
       const json = await sendRequest(apiURL + '/api/components', {
         headers: await buildHeaders(),
         method: 'POST',

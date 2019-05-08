@@ -23,6 +23,7 @@ export default class Components extends React.Component {
       componentID: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
       status: PropTypes.string.isRequired,
       order: PropTypes.number.isRequired
     }).isRequired).isRequired,

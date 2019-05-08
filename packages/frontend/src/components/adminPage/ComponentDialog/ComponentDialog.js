@@ -20,6 +20,7 @@ export default class ComponentDialog extends React.Component {
       componentID: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
       status: PropTypes.string.isRequired,
       order: PropTypes.number.isRequired
     }),
@@ -34,12 +35,14 @@ export default class ComponentDialog extends React.Component {
       this.state = {
         name: props.component.name,
         description: props.component.description,
+        url: props.component.url,
         status: props.component.status
       }
     } else {
       this.state = {
         name: '',
         description: '',
+        url: '',
         status: componentStatuses[0]
       }
     }
@@ -57,6 +60,10 @@ export default class ComponentDialog extends React.Component {
 
   handleChangeDescription = (value) => {
     this.setState({description: value})
+  }
+
+  handleChangeURL = (value) => {
+    this.setState({url: value})
   }
 
   updateCallbacks = {
@@ -108,6 +115,8 @@ export default class ComponentDialog extends React.Component {
         <TextField label='Name' text={this.state.name} rows={1} onChange={this.handleChangeName} />
         <TextField label='Description (optional)' text={this.state.description} rows={2}
           onChange={this.handleChangeDescription} />
+        <TextField label='URL (optional)' text={this.state.url} rows={1}
+          onChange={this.handleChangeURL} />
       </div>
       <div className='mdl-dialog__actions'>
         <Button onClick={clickHandler} name={actionName}

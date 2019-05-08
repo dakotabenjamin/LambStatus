@@ -8,7 +8,8 @@ export default class Components extends React.Component {
     components: PropTypes.arrayOf(PropTypes.shape({
       componentID: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired
+      status: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired
     }).isRequired).isRequired,
     classNames: PropTypes.string,
     fetchComponents: PropTypes.func.isRequired
@@ -24,7 +25,7 @@ export default class Components extends React.Component {
       return (
         <li key={component.componentID} className={classnames('mdl-shadow--2dp', classes.item)}>
           <span className={classes['item-primary']}>
-            <span>{component.name}</span>
+            <span><a href={component.url}>{component.name}</a></span>
             <span className={classes['item-subtitle']}>{component.description}</span>
           </span>
           <span className={classes['item-secondary']} style={{color: statusColor}}>

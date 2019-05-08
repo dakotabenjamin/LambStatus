@@ -16,8 +16,9 @@ export default class ComponentsStore {
     return new Promise((resolve, reject) => {
       const params = {
         TableName: ServiceComponentTable,
-        ProjectionExpression: 'componentID, description, #nm, #st, #or',
+        ProjectionExpression: 'componentID, description, #url, #nm, #st, #or',
         ExpressionAttributeNames: {
+          '#url': 'url',
           '#nm': 'name',
           '#st': 'status',
           '#or': 'order'
@@ -61,10 +62,10 @@ export default class ComponentsStore {
   }
 
   update (component) {
-    const {componentID, name, description, status, order} = component
+    const {componentID, name, description, url, status, order} = component
     return new Promise((resolve, reject) => {
       const [updateExp, attrNames, attrValues] = buildUpdateExpression({
-        name, description, status, order
+        name, description, url, status, order
       })
       const params = {
         Key: { componentID },
